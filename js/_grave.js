@@ -13,12 +13,11 @@ function Grave() {
   this.website = null;
   this.loadingTexture = false;
   this.loader = new THREE.TextureLoader();
-
-  this.rise = function() {
-    //console.log("Grave.rise");
-    _this.h = (_this.w / 800) * _this.website.height;
+  this.tex;
+  this.rise = function(texture) {
+    _this.h = (_this.w / 800) * texture.image.height;
     _this.model.geometry = new THREE.BoxGeometry( _this.w, _this.h, _this.depth);
-    _this.model.position.y = -_this.h/2;
+
     var tweenPosition = new TWEEN.Tween(_this.model.position)
       .to({ y: (_this.h/2)+0.5 }, 6000)
       .onUpdate(function() {
@@ -49,8 +48,7 @@ function Grave() {
         scene.add( _this.model );
 
 
-        _this.texturise().then(function() {
-          console.log('texture loaded');
+        _this.texturise().then( (tex) => {
           resolve();
         });
 
@@ -79,12 +77,19 @@ function Grave() {
         } else {
 
             _this.loadingTexture = true;
+            const url =  window.imgFolder + _this.website;
+            const t =  _this.website.substring( 0, _this.website.length - 4 );
+            const span = $('<span />').attr('class', 'site-name').text(t);
+            $(message).prepend( span );
+            setTimeout( ()=>{ span.remove()}, 2000);
 
-
-            _this.loader.load( window.imgFolder + _this.website.url, (texture) => {
+            _this.loader.load( url, (texture) => {
 
               texture.minFilter = THREE.LinearFilter;
-              var colour = new THREE.MeshPhongMaterial( {color: _this.website.rgb} );
+
+              const rand = () => { return parseInt( Math.random() * 255 ) };
+
+              var colour = new THREE.MeshPhongMaterial( {color:  `rgb(${rand()},${rand()},${rand()})`  } );
               var image = new THREE.MeshBasicMaterial( { map: texture });
               // var material = new THREE.MeshFaceMaterial(materialArray);
 
@@ -92,8 +97,8 @@ function Grave() {
               _this.model.needsUpdate = true;
 
 
-              _this.rise();
-              resolve();
+              _this.rise(texture);
+              resolve(texture);
 
             });
 

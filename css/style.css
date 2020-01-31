@@ -1,3 +1,654 @@
+#controls {
+  position: absolute;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  top: 10px; }
+  #controls button {
+    text-align: center;
+    margin: 0;
+    display: inline-block;
+    margin-top: 6px; }
+    #controls button span {
+      display: block; }
+    #controls button span:first-child {
+      font-size: 18px; }
+
+@media (orientation: portrait) {
+  .vr #vr {
+    display: block;
+    height: calc( 100% + 12.5px); } }
+
+@media (orientation: landscape) {
+  .vr #ctrlVR {
+    border-color: #333;
+    color: #333;
+    background: transparent; } }
+
+.vr #controls button {
+  display: none !important; }
+  .vr #controls button#ctrlVR {
+    display: inline-block !important; }
+
+canvas {
+  width: 100%;
+  height: 100%; }
+
+#vr {
+  position: absolute;
+  bottom: -5px;
+  left: -7.5px;
+  width: calc( 100% + 17.5px);
+  height: 0px;
+  background: lightgrey;
+  color: #333;
+  z-index: 3;
+  overflow: hidden;
+  transition: height 0.4s ease; }
+  #vr .inner {
+    top: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    max-width: 420px;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 12px;
+    text-align: center; }
+    #vr .inner .scale {
+      transform: scale(1.5);
+      margin-bottom: 20px;
+      transform-origin: 50% 50%; }
+    #vr .inner .italic {
+      font-style: italic; }
+    #vr .inner hr {
+      margin: 40px 0px; }
+    #vr .inner p {
+      line-height: 30px; }
+
+.f1 {
+  font-size: 1px; }
+
+.t1 {
+  position: relative;
+  top: 1px; }
+
+.b1 {
+  position: relative;
+  bottom: 1px; }
+
+.f2 {
+  font-size: 2px; }
+
+.t2 {
+  position: relative;
+  top: 2px; }
+
+.b2 {
+  position: relative;
+  bottom: 2px; }
+
+.f3 {
+  font-size: 3px; }
+
+.t3 {
+  position: relative;
+  top: 3px; }
+
+.b3 {
+  position: relative;
+  bottom: 3px; }
+
+.f4 {
+  font-size: 4px; }
+
+.t4 {
+  position: relative;
+  top: 4px; }
+
+.b4 {
+  position: relative;
+  bottom: 4px; }
+
+.f5 {
+  font-size: 5px; }
+
+.t5 {
+  position: relative;
+  top: 5px; }
+
+.b5 {
+  position: relative;
+  bottom: 5px; }
+
+.f6 {
+  font-size: 6px; }
+
+.t6 {
+  position: relative;
+  top: 6px; }
+
+.b6 {
+  position: relative;
+  bottom: 6px; }
+
+.f7 {
+  font-size: 7px; }
+
+.t7 {
+  position: relative;
+  top: 7px; }
+
+.b7 {
+  position: relative;
+  bottom: 7px; }
+
+.f8 {
+  font-size: 8px; }
+
+.t8 {
+  position: relative;
+  top: 8px; }
+
+.b8 {
+  position: relative;
+  bottom: 8px; }
+
+.f9 {
+  font-size: 9px; }
+
+.t9 {
+  position: relative;
+  top: 9px; }
+
+.b9 {
+  position: relative;
+  bottom: 9px; }
+
+.f10 {
+  font-size: 10px; }
+
+.t10 {
+  position: relative;
+  top: 10px; }
+
+.b10 {
+  position: relative;
+  bottom: 10px; }
+
+.f11 {
+  font-size: 11px; }
+
+.t11 {
+  position: relative;
+  top: 11px; }
+
+.b11 {
+  position: relative;
+  bottom: 11px; }
+
+.f12 {
+  font-size: 12px; }
+
+.t12 {
+  position: relative;
+  top: 12px; }
+
+.b12 {
+  position: relative;
+  bottom: 12px; }
+
+.f13 {
+  font-size: 13px; }
+
+.t13 {
+  position: relative;
+  top: 13px; }
+
+.b13 {
+  position: relative;
+  bottom: 13px; }
+
+.f14 {
+  font-size: 14px; }
+
+.t14 {
+  position: relative;
+  top: 14px; }
+
+.b14 {
+  position: relative;
+  bottom: 14px; }
+
+.f15 {
+  font-size: 15px; }
+
+.t15 {
+  position: relative;
+  top: 15px; }
+
+.b15 {
+  position: relative;
+  bottom: 15px; }
+
+.f16 {
+  font-size: 16px; }
+
+.t16 {
+  position: relative;
+  top: 16px; }
+
+.b16 {
+  position: relative;
+  bottom: 16px; }
+
+.f17 {
+  font-size: 17px; }
+
+.t17 {
+  position: relative;
+  top: 17px; }
+
+.b17 {
+  position: relative;
+  bottom: 17px; }
+
+.f18 {
+  font-size: 18px; }
+
+.t18 {
+  position: relative;
+  top: 18px; }
+
+.b18 {
+  position: relative;
+  bottom: 18px; }
+
+.f19 {
+  font-size: 19px; }
+
+.t19 {
+  position: relative;
+  top: 19px; }
+
+.b19 {
+  position: relative;
+  bottom: 19px; }
+
+.f20 {
+  font-size: 20px; }
+
+.t20 {
+  position: relative;
+  top: 20px; }
+
+.b20 {
+  position: relative;
+  bottom: 20px; }
+
+.f21 {
+  font-size: 21px; }
+
+.t21 {
+  position: relative;
+  top: 21px; }
+
+.b21 {
+  position: relative;
+  bottom: 21px; }
+
+.f22 {
+  font-size: 22px; }
+
+.t22 {
+  position: relative;
+  top: 22px; }
+
+.b22 {
+  position: relative;
+  bottom: 22px; }
+
+.f23 {
+  font-size: 23px; }
+
+.t23 {
+  position: relative;
+  top: 23px; }
+
+.b23 {
+  position: relative;
+  bottom: 23px; }
+
+.f24 {
+  font-size: 24px; }
+
+.t24 {
+  position: relative;
+  top: 24px; }
+
+.b24 {
+  position: relative;
+  bottom: 24px; }
+
+.f25 {
+  font-size: 25px; }
+
+.t25 {
+  position: relative;
+  top: 25px; }
+
+.b25 {
+  position: relative;
+  bottom: 25px; }
+
+.f26 {
+  font-size: 26px; }
+
+.t26 {
+  position: relative;
+  top: 26px; }
+
+.b26 {
+  position: relative;
+  bottom: 26px; }
+
+.f27 {
+  font-size: 27px; }
+
+.t27 {
+  position: relative;
+  top: 27px; }
+
+.b27 {
+  position: relative;
+  bottom: 27px; }
+
+.f28 {
+  font-size: 28px; }
+
+.t28 {
+  position: relative;
+  top: 28px; }
+
+.b28 {
+  position: relative;
+  bottom: 28px; }
+
+.f29 {
+  font-size: 29px; }
+
+.t29 {
+  position: relative;
+  top: 29px; }
+
+.b29 {
+  position: relative;
+  bottom: 29px; }
+
+.f30 {
+  font-size: 30px; }
+
+.t30 {
+  position: relative;
+  top: 30px; }
+
+.b30 {
+  position: relative;
+  bottom: 30px; }
+
+.f31 {
+  font-size: 31px; }
+
+.t31 {
+  position: relative;
+  top: 31px; }
+
+.b31 {
+  position: relative;
+  bottom: 31px; }
+
+.f32 {
+  font-size: 32px; }
+
+.t32 {
+  position: relative;
+  top: 32px; }
+
+.b32 {
+  position: relative;
+  bottom: 32px; }
+
+.f33 {
+  font-size: 33px; }
+
+.t33 {
+  position: relative;
+  top: 33px; }
+
+.b33 {
+  position: relative;
+  bottom: 33px; }
+
+.f34 {
+  font-size: 34px; }
+
+.t34 {
+  position: relative;
+  top: 34px; }
+
+.b34 {
+  position: relative;
+  bottom: 34px; }
+
+.f35 {
+  font-size: 35px; }
+
+.t35 {
+  position: relative;
+  top: 35px; }
+
+.b35 {
+  position: relative;
+  bottom: 35px; }
+
+.f36 {
+  font-size: 36px; }
+
+.t36 {
+  position: relative;
+  top: 36px; }
+
+.b36 {
+  position: relative;
+  bottom: 36px; }
+
+.f37 {
+  font-size: 37px; }
+
+.t37 {
+  position: relative;
+  top: 37px; }
+
+.b37 {
+  position: relative;
+  bottom: 37px; }
+
+.f38 {
+  font-size: 38px; }
+
+.t38 {
+  position: relative;
+  top: 38px; }
+
+.b38 {
+  position: relative;
+  bottom: 38px; }
+
+.f39 {
+  font-size: 39px; }
+
+.t39 {
+  position: relative;
+  top: 39px; }
+
+.b39 {
+  position: relative;
+  bottom: 39px; }
+
+.f40 {
+  font-size: 40px; }
+
+.t40 {
+  position: relative;
+  top: 40px; }
+
+.b40 {
+  position: relative;
+  bottom: 40px; }
+
+.f41 {
+  font-size: 41px; }
+
+.t41 {
+  position: relative;
+  top: 41px; }
+
+.b41 {
+  position: relative;
+  bottom: 41px; }
+
+.f42 {
+  font-size: 42px; }
+
+.t42 {
+  position: relative;
+  top: 42px; }
+
+.b42 {
+  position: relative;
+  bottom: 42px; }
+
+#vrControls {
+  top: 12.5px;
+  right: 12.5px; }
+  #vrControls button span:first-child {
+    margin-left: -4px; }
+
+#infoControls {
+  top: 12.5px;
+  left: 12.5px; }
+
+#controls {
+  bottom: 12.5px;
+  display: block;
+  position: absolute;
+  padding-bottom: 5px;
+  width: calc( 100% - 25px);
+  height: calc( 100% - 25px);
+  left: 50%;
+  transform: translate(-50%, 0%);
+  text-align: center; }
+  #controls .row {
+    display: block;
+    clear: both;
+    width: calc( 100% - 20px);
+    margin-left: 10px; }
+    #controls .row.row2 {
+      position: absolute;
+      bottom: 10px; }
+    #controls .row.row1 {
+      position: absolute;
+      bottom: 80px; }
+
+button {
+  margin: 0;
+  display: block;
+  box-sizing: border-box;
+  height: 60px;
+  outline: none;
+  border-radius: 1px;
+  background: linear-gradient(#fff, #ddd);
+  border: 1px solid #aaa;
+  width: 20%;
+  border-left-color: #666;
+  border-top-color: #666;
+  border-right-color: #666;
+  border-bottom-color: #666;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color 1s ease, color 1s ease, background 1s ease; }
+  button#ctrlVR {
+    z-index: 10; }
+  button span {
+    display: block; }
+  button.active, button.needs-active-state:active {
+    background: #aaa; }
+  button.needs-active-state {
+    width: 12%; }
+  button.fixed {
+    position: absolute;
+    bottom: 0px; }
+    button.fixed.fixed-right {
+      right: 1%; }
+    button.fixed.fixed-left {
+      left: 1%; }
+
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0px) scale(1); }
+  100% {
+    opacity: 0;
+    transform: translate(0, 0px) scale(1); } }
+
+#middle {
+  text-align: center;
+  position: fixed;
+  top: 40px;
+  left: 50%;
+  transform: translate(-50%, 0px);
+  padding: 1em 2em;
+  z-index: 0;
+  display: none; }
+  #middle .site-name {
+    font-size: 11px;
+    display: block;
+    margin: 0 auto;
+    color: #333;
+    padding: 0.5em 2em;
+    animation: fadeout 3s 1;
+    animation-fill-mode: forwards; }
+
+*, div, body, html {
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  -khtml-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important; }
+
+#main {
+  border: 10px ridge #bbb;
+  box-sizing: border-box;
+  height: calc( 100%, 100px);
+  width: 100%;
+  height: 100%;
+  position: relative;
+  margin: 0;
+  display: block;
+  top: 0;
+  left: 0; }
+
+canvas {
+  background: white;
+  border: 5px ridge #eee;
+  box-sizing: border-box; }
+
+button {
+  -webkit-appearance: button; }
+
 * {
   padding: 0;
   margin: 0; }
@@ -7,8 +658,8 @@ body {
   padding: 0;
   margin: 0;
   letter-spacing: 0.1em;
-  font-style: italic;
-  font-size: 18px; }
+  font-size: 18px;
+  font-family: Courier, monospace; }
 
 .progressBar {
   position: fixed;
@@ -19,36 +670,6 @@ body {
 
 .geocities {
   position: relative; }
-  .geocities canvas {
-    max-width: 100vwcoe; }
-
-.ui {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  margin: 0 auto;
-  width: 320px;
-  text-align: left;
-  line-height: 1.8em;
-  z-index: 10;
-  display: block;
-  padding: 0.4em 0.8em; }
-  .ui a {
-    color: #222;
-    text-decoration: none;
-    font-weight: bold; }
-  .ui p {
-    border-top: 1px solid #eee;
-    padding: 0.4em 0em;
-    z-index: 200;
-    position: relative; }
-    .ui p:first-child {
-      border-top: none; }
-
-span, h1 {
-  font-style: italic;
-  padding: 0.1em 0.2em;
-  display: inline-block; }
 
 .curtain {
   position: absolute;

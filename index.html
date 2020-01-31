@@ -1,8 +1,16 @@
 
 <head>
   <link rel="stylesheet" type="text/css" href="css/style.css"/>
-  <title>The shape of death to come - internet epitaphs &amp; memorials of Yahoo Geocities</title>
+  <title>Geocities Mausoleum | Internet Epitaphs & Memorials</title>
   <meta name="description" content="Interactive graveyard of internet epitaphs &amp; memorials recovered from the Yahoo Geocities archive"/>
+
+  <link rel="icon" sizes="any" mask href="/icon.svg">
+  <meta name="theme-color" content="#400090">
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="canonical" href="https://de.yahoo.com/" /> 
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta property="og:type" content="article"/>
   <meta property="og:title" content="The shape of death to come - internet epitaphs &amp; memorials of Yahoo Geocities"/>
   <meta property="og:site_name" content="Gilbert Sinnott"/>
@@ -12,8 +20,80 @@
   <meta property="article:author" content="https://twitter.com/gilbertsinnott"/>
 </head>
 <body>
-  <script src="js/min/script-min.js"></script>
-  <script src="js/_database.js"></script>
-  <script src="js/main.js" type="module"></script>
-  <canvas class="3d"></canvas>
+  <div id="main">
+    <script src="js/min/script-min.js"></script>
+    <script src="js/webvr-polyfill.js"></script>
+    <script src="js/libs/_mobile.detect.js"></script>
+    <script src="js/_database.js"></script>
+    <script src="js/main.js" type="module"></script>
+    <canvas class="3d"></canvas>
+    <div id="middle">
+      <div id="message"></div>
+    </div>
+    <div id="controls">
+
+      <div id="vr">
+        <div class="inner">
+          <hr />
+          <p class="scale">
+            <span class="f28 t5">▯&#xFE0E;</span>
+            <span class="f18 t2">→&#xFE0E;</span>
+            <span class="f26 t5">▭&#xFE0E;</span>
+          </p>
+          <p>
+            Turn device to landscape  
+          </p>
+          <hr />
+          <p class="scale">
+            <span class="f28">⤢&#xFE0E;</span>
+          </p>
+          <p>
+            For fullscreen, use:
+          </p>
+          <p> 
+            Actions >
+            Add to Homescreen
+          </p>
+          <hr />
+        </div>
+      </div>
+
+      <div class="row row1">
+        <button id="ctrlUp" data-action="actionUp">
+          <span>⬆&#xFE0E;</span>
+          <span>Q</span>
+        </button>
+        <button id="ctrlU" data-action="actionForward">
+          <span>↑&#xFE0E;</span>
+          <span>W</span>
+        </button>
+        <button id="ctrlDown" data-action="actionDown">
+          <span>⬇&#xFE0E;</span>
+          <span>E</span>
+        </button>
+      </div>
+      <div class="row row2">
+      <button id="ctrlInfo" class="needs-active-state fixed fixed-left">
+        <span>ℹ&#xFE0E;</span>
+        <span>About</span>
+      </button>
+        <button id="ctrlL" data-action="actionLeft">
+          <span>←&#xFE0E;</span>
+          <span>A</span>
+        </button>
+        <button id="ctrlD" data-action="actionBackward">
+          <span>↓&#xFE0E;</span>
+          <span>S</span>
+        </button>
+        <button id="ctrlR" data-action="actionRight">
+          <span>→&#xFE0E;</span>
+          <span>D</span>
+        </button>
+      <button id="ctrlVR" class="needs-active-state fixed fixed-right" data-action="launchVR">
+        <span class="b4">▄&#xFE0E;</span>
+        <span id="vrText">VR</span>
+      </button>   
+      </div>
+    </div>
+  </div>
 </body>
