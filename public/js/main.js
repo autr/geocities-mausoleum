@@ -19,7 +19,6 @@ const getUrlVars = () => {
     return vars;
 }
 
-console.log(getUrlVars())
 
 while (shuffled.length < websites.length) {
   var randIndex = parseInt((Math.random() * websites.length), 10);
@@ -96,10 +95,18 @@ document.body.onmouseup = function() {
 
 const onKeyDown = function ( event ) {
 
+
   //event.preventDefault();
 
   if (!controlsInited) {
     $('#ctrlU').trigger('click');
+  }
+
+
+  if (isMobile()) {
+    if (event.key === 'a') startEvent('actionForward');
+    if (event.key === 'd') startEvent('actionBackward');
+    return;
   }
 
   switch ( event.keyCode ) {
@@ -125,6 +132,11 @@ const onKeyDown = function ( event ) {
 
 const onKeyUp = function ( event ) {
 
+  if (isMobile()) {
+    if (event.key === 'a') stopEvent('actionForward');
+    if (event.key === 'd') stopEvent('actionBackward');
+    return;
+  }
   switch ( event.keyCode ) {
 
     case 38: /*up*/
@@ -184,7 +196,25 @@ const stopEvent = (k) => {
   if (k === 'actionDown') controls.moveDown = false;
 };
 
+let info = false;
+
+window.addEventListener("gamepadconnected", (e) => {
+  console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
+  e.gamepad.index, e.gamepad.id,
+  e.gamepad.buttons.length, e.gamepad.axes.length);
+  e.gamepad.buttons.forEach( (b) => {
+    console.log('button', b)
+  })
+  e.gamepad.axes.forEach( (a) => {
+    console.log('axis', a)
+  })
+});
+
+
 window.onload = function () { 
+
+  console.log('gamepads', navigator.getGamepads());
+
   window.message = $('#message')[0];
   init();
 
@@ -217,6 +247,13 @@ window.onload = function () {
     return false;
   };
 
+
+  const toggleInfo = () => {
+      if (!info) $('body').addClass("info");
+      if (info) $('body').removeClass("info");
+      info = !info;
+  }
+
   const toggleVR = () => {
 
       if (!VR) $('body').addClass("vr");
@@ -233,6 +270,7 @@ window.onload = function () {
   $('button').click( (e) => {
 
     if (e.currentTarget.id === 'ctrlVR') toggleVR();
+    if (e.currentTarget.id === 'ctrlInfo') toggleInfo();
     if (!controlsInited) {
 
       //////// CONTROLS
@@ -545,19 +583,16 @@ var material = new THREE.MeshBasicMaterial( {color: 0xffffff, vertexColors: THRE
   // document.addEventListener( 'mousemove', onDocumentMouseMove, false );
   // document.addEventListener( 'touchstart', onDocumentMouseDown, false );
 
-  document.addEventListener('keydown', (e) => {
+  // window.addEventListener('keydown', (e) => {
 
-    // if (e.key === '1') dat.GUI.toggleHide();
-    // if (e.key === '2') controls.activeLook = !controls.activeLook;
+  //   console.log('keydown', e.key);
 
-    // if(e.key === 'x') {
-    //   camera.position.y += 1;
-    // }
-    // if(e.key === 'z') {
-    //   camera.position.y -= 1;
-    // }
+  // }, false);
+  // window.addEventListener('keyup', (e) => {
 
-  }, false);
+  //   console.log('keyup', e.key);
+
+  // }, false);
 
   //////// RAYS
 
@@ -574,10 +609,36 @@ var material = new THREE.MeshBasicMaterial( {color: 0xffffff, vertexColors: THRE
 
 let controlsInited = false;
 
+const buttonPressed = ( b ) => {
+  return true;
+}
 
+const gamepadLoop = () => {
+  var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
+  if (!gamepads) return;
+
+  var gp = gamepads[0];
+  if (!gp) return;
+
+  if (buttonPressed(gp.buttons[0])) {
+    console.log('b 0')
+  }
+  if (buttonPressed(gp.buttons[1])) {
+    
+    console.log('b 1')
+  }
+  if (buttonPressed(gp.buttons[2])) {
+    
+    console.log('b 2')
+  }
+  if (buttonPressed(gp.buttons[3])) {
+    
+    console.log('b 3')
+  }
+}
 
 function animate() {
-
+  gamepadLoop();
   TWEEN.update();
   if (showStats) window.stats.begin();
 

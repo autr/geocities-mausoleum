@@ -121,7 +121,6 @@ var DeviceOrientationControls = function ( object ) {
 	this.update = function (delta) {
 
 		if ( scope.enabled === false ) return;
-		console.log('PASSSSSED', scope.moveForward);
 
 		var actualMoveSpeed = delta * this.movementSpeed;
 
@@ -144,7 +143,6 @@ var DeviceOrientationControls = function ( object ) {
 
 
 		if ( this.moveForward ) {
-			console.log('FORWARD 2');
 			this.object.translateZ( - ( actualMoveSpeed ) );
 		}
 		if ( this.moveBackward ) this.object.translateZ( actualMoveSpeed );
