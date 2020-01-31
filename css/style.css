@@ -14,6 +14,10 @@
     #controls button span:first-child {
       font-size: 18px; }
 
+.info #about {
+  display: block;
+  height: calc( 100% + 12.5px); }
+
 @media (orientation: portrait) {
   .vr #vr {
     display: block;
@@ -34,7 +38,7 @@ canvas {
   width: 100%;
   height: 100%; }
 
-#vr {
+.overlay {
   position: absolute;
   bottom: -5px;
   left: -7.5px;
@@ -43,29 +47,32 @@ canvas {
   background: lightgrey;
   color: #333;
   z-index: 3;
-  overflow: hidden;
+  overflow: auto;
   transition: height 0.4s ease; }
-  #vr .inner {
+  .overlay#vr .inner {
     top: 50%;
     position: absolute;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-align: center; }
+  .overlay .inner {
     padding: 20px;
     max-width: 420px;
     width: 100%;
     margin: 0 auto;
     font-size: 12px;
-    text-align: center; }
-    #vr .inner .scale {
+    text-align: left; }
+    .overlay .inner .scale {
       transform: scale(1.5);
       margin-bottom: 20px;
       transform-origin: 50% 50%; }
-    #vr .inner .italic {
+    .overlay .inner .italic {
       font-style: italic; }
-    #vr .inner hr {
+    .overlay .inner hr {
       margin: 40px 0px; }
-    #vr .inner p {
-      line-height: 30px; }
+    .overlay .inner p {
+      line-height: 30px;
+      padding: 1em 0em; }
 
 .f1 {
   font-size: 1px; }
@@ -578,7 +585,7 @@ button {
   appearance: none;
   -webkit-appearance: none;
   transition: border-color 1s ease, color 1s ease, background 1s ease; }
-  button#ctrlVR {
+  button#ctrlVR, button#ctrlInfo {
     z-index: 10; }
   button span {
     display: block; }
