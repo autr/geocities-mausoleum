@@ -1,3 +1,4 @@
+
 /**
  * @author richt / http://richt.me
  * @author WestLangley / http://github.com/WestLangley
@@ -7,7 +8,7 @@
 
 import {
 	Euler,
-	Math as _Math,
+	Math as MathUtils,
 	Quaternion,
 	Vector3
 } from "../../../build/three.module.js";
@@ -25,6 +26,16 @@ var DeviceOrientationControls = function ( object ) {
 	this.screenOrientation = 0;
 
 	this.alphaOffset = 0; // radians
+	this.created = false;
+	this.movementSpeed = 10;
+
+
+	this.moveForward = false;
+	this.moveBackward = false;
+	this.moveLeft = false;
+	this.moveRight = false;
+	this.moveUp = false;
+	this.moveDown = false;
 
 	var onDeviceOrientationChangeEvent = function ( event ) {
 
@@ -68,8 +79,6 @@ var DeviceOrientationControls = function ( object ) {
 
 		onScreenOrientationChangeEvent(); // run once on load
 
-		// iOS 13+
-
 		if ( window.DeviceOrientationEvent !== undefined && typeof window.DeviceOrientationEvent.requestPermission === 'function' ) {
 
 			window.DeviceOrientationEvent.requestPermission().then( function ( response ) {
@@ -79,16 +88,18 @@ var DeviceOrientationControls = function ( object ) {
 					window.addEventListener( 'orientationchange', onScreenOrientationChangeEvent, false );
 					window.addEventListener( 'deviceorientation', onDeviceOrientationChangeEvent, false );
 
+					scope.created = true;
 				}
 
 			} ).catch( function ( error ) {
 
+				scope.created = false;
 				console.error( 'THREE.DeviceOrientationControls: Unable to use DeviceOrientation API:', error );
 
 			} );
 
 		} else {
-
+			scope.created = false;
 			window.addEventListener( 'orientationchange', onScreenOrientationChangeEvent, false );
 			window.addEventListener( 'deviceorientation', onDeviceOrientationChangeEvent, false );
 
@@ -107,25 +118,42 @@ var DeviceOrientationControls = function ( object ) {
 
 	};
 
-	this.update = function () {
+	this.update = function (delta) {
 
 		if ( scope.enabled === false ) return;
+		console.log('PASSSSSED', scope.moveForward);
+
+		var actualMoveSpeed = delta * this.movementSpeed;
 
 		var device = scope.deviceOrientation;
 
 		if ( device ) {
 
-			var alpha = device.alpha ? _Math.degToRad( device.alpha ) + scope.alphaOffset : 0; // Z
+			var alpha = device.alpha ? MathUtils.degToRad( device.alpha ) + scope.alphaOffset : 0; // Z
 
-			var beta = device.beta ? _Math.degToRad( device.beta ) : 0; // X'
+			var beta = device.beta ? MathUtils.degToRad( device.beta ) : 0; // X'
 
-			var gamma = device.gamma ? _Math.degToRad( device.gamma ) : 0; // Y''
+			var gamma = device.gamma ? MathUtils.degToRad( device.gamma ) : 0; // Y''
 
-			var orient = scope.screenOrientation ? _Math.degToRad( scope.screenOrientation ) : 0; // O
+			var orient = scope.screenOrientation ? MathUtils.degToRad( scope.screenOrientation ) : 0; // O
 
-			setObjectQuaternion( scope.object.quaternion, alpha, beta, gamma, orient );
+
+			if (this.created) setObjectQuaternion( scope.object.quaternion, alpha, beta, gamma, orient );
 
 		}
+
+
+		if ( this.moveForward ) {
+			console.log('FORWARD 2');
+			this.object.translateZ( - ( actualMoveSpeed ) );
+		}
+		if ( this.moveBackward ) this.object.translateZ( actualMoveSpeed );
+
+		if ( this.moveLeft ) this.object.translateX( - actualMoveSpeed );
+		if ( this.moveRight ) this.object.translateX( actualMoveSpeed );
+
+		if ( this.moveUp ) this.object.translateY( actualMoveSpeed );
+		if ( this.moveDown ) this.object.translateY( - actualMoveSpeed );
 
 
 	};

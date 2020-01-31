@@ -1,3 +1,225 @@
+#controls
+	position: absolute
+	text-align: center
+	height: 100%
+	width: 100%
+	top: 10px
+	button
+		text-align: center
+		margin: 0
+		display: inline-block
+		margin-top: 6px
+		span 
+			display: block
+		span:first-child
+			font-size: 18px
+
+$edge: 12.5px
+
+@media (orientation: portrait)
+	.vr #vr
+		display: block
+		height: calc( 100% + 12.5px )
+@media (orientation: landscape)
+	.vr #ctrlVR
+		border-color: #333
+		color: #333
+		background: transparent
+ 
+.vr #controls  
+	button
+		display: none!important
+		&#ctrlVR
+			display: inline-block!important
+
+canvas 
+	width: 100%
+	height: 100%
+
+#vr
+	position: absolute
+	bottom: -5px
+	left: -7.5px
+	width: calc( 100% + 17.5px )
+	height: 0px
+	background: lightgrey
+	color: #333
+	z-index: 3
+	// display: none
+	overflow: hidden
+	transition: height 0.4s ease
+	.inner
+		top: 50%
+		position: absolute
+		left: 50%
+		transform: translate( -50%, -50%)
+		padding: 20px
+		max-width: 420px
+		width: 100%
+		margin: 0 auto
+		font-size: 12px
+		text-align: center
+		// font-weight: bold
+		.scale
+			transform: scale(1.5)
+			margin-bottom: 20px
+			transform-origin: 50% 50%
+		.italic
+			font-style: italic
+		hr 
+			margin: 40px 0px
+		p 
+			line-height: 30px
+			// border: 1px solid red
+
+@for $i from 1 through 42
+	.f#{$i}
+		font-size: #{$i}px
+	.t#{$i}
+		position: relative
+		top: #{$i}px
+	.b#{$i}
+		position: relative
+		bottom: #{$i}px
+
+#vrControls
+	top: $edge
+	right: $edge
+	button
+		span:first-child
+			margin-left: -4px
+		// width: 100px
+
+
+#infoControls
+	top: $edge
+	left: $edge
+
+#controls
+	bottom: $edge
+	display: block
+	position: absolute
+	padding-bottom: 5px
+	width: calc( 100% - 25px )
+	height: calc( 100% - 25px )
+	left: 50%
+	transform: translate(-50%, 0%)
+	text-align: center
+	// background: linear-gradient( transparent 90%, #aaa )
+	.row
+		display: block
+		clear: both
+		width: calc( 100% - 20px )
+		margin-left: 10px
+		&.row2
+			position: absolute
+			bottom: 10px
+		&.row1
+			position: absolute
+			bottom: 80px
+
+button
+	// min-width: 80px
+	margin: 0
+	display: block
+	box-sizing: border-box
+	height: 60px
+	outline: none
+	border-radius: 1px
+	background: linear-gradient( #fff, #ddd )
+	border: 1px solid #aaa
+	width: 20%
+	$a: #666
+	$b: #666
+	border-left-color: $a
+	border-top-color: $a
+	border-right-color: $b
+	border-bottom-color: $b
+	// background: #eee
+	// border: 5px outset lightgrey
+	appearance: none
+	-webkit-appearance: none
+	transition: border-color 1s ease, color 1s ease, background 1s ease
+	&#ctrlVR
+		z-index: 10
+	span
+		display: block
+	&.active, &.needs-active-state:active
+		background: #aaa
+	&.needs-active-state
+		width: 12%
+	$m: 1%
+	&.fixed
+		position: absolute
+		bottom: 0px
+		&.fixed-right
+			right: $m
+		&.fixed-left
+			left: $m
+
+
+
+
+@keyframes fadeout
+	0%
+		opacity: 1
+		transform: translate(0, 0px) scale(1)
+	100% 
+		opacity: 0
+		transform: translate(0, 0px) scale(1)
+#middle 
+	text-align: center
+	position: fixed
+	top: 40px
+	left: 50%
+	transform: translate(-50%, 0px)
+	padding: 1em 2em
+	z-index: 0
+	display: none
+	.site-name
+		font-size: 11px
+		display: block
+		margin: 0 auto
+		color: #333
+		// background: black
+		// color: white
+		padding: 0.5em 2em
+		animation: fadeout 3s 1
+		animation-fill-mode: forwards
+
+*, div, body, html
+	user-select: none!important
+	// pointer-events: none!important
+	-webkit-touch-callout: none!important
+	-webkit-user-select: none!important
+	-khtml-user-select: none!important
+	-moz-user-select: none!important
+	-ms-user-select: none!important
+	user-select: none!important
+
+#main
+	border: 10px ridge #bbb
+	box-sizing: border-box
+	height: calc( 100%, 100px)
+	width: 100%
+	height: 100%
+	position: relative
+	margin: 0
+	display: block
+	top: 0
+	left: 0
+
+
+
+canvas 
+	background: white
+	border: 5px ridge #eee
+	box-sizing: border-box
+
+button 
+	-webkit-appearance: button
+
+
 * 
 	padding: 0
 	margin: 0
@@ -8,8 +230,8 @@ body
 	padding: 0
 	margin: 0
 	letter-spacing: 0.1em
-	font-style: italic
 	font-size: 18px
+	font-family: Courier, monospace
 
 .progressBar
 	position: fixed
@@ -19,40 +241,6 @@ body
 	background-color: red
 .geocities
 	position: relative
-	// top: 4em
-	canvas
-		max-width: 100vwcoe
-.ui
-	position: fixed
-	left: 0
-	// transform: translate(50%, 0%)
-	// font-size: 1.4em
-	bottom: 0
-	margin: 0 auto
-	width: 320px
-	text-align: left
-	line-height: 1.8em
-	z-index: 10
-	display: block
-	padding: 0.4em 0.8em
-	// font-style: normal
-	a
-		color: #222
-		text-decoration: none
-		font-weight: bold
-	p
-		border-top: 1px solid #eee
-		padding: 0.4em 0em
-		z-index: 200
-		position: relative
-		&:first-child
-			border-top: none
-span , h1
-	// background-color: #333
-	// color: #fff
-	font-style: italic
-	padding: 0.1em 0.2em
-	display: inline-block
 .curtain
 	position: absolute
 	width: 100%
@@ -63,9 +251,6 @@ span , h1
 	z-index: 2
 
 
-
-body > canvas
-	//opacity: 0.05
 .wrapper
 	mix-blend-mode: multiply
 	z-index: 3

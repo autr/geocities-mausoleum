@@ -7,6 +7,7 @@
 // @codekit-prepend "libs/_underscore.min.js";
 // @codekit-prepend "libs/_poisson-disc.js";
 // @codekit-prepend "libs/_jquery.min.js";
+// @codekit-prepend "libs/_mobile.detect.js"; 
 
 /*-- Stats --*/
 
