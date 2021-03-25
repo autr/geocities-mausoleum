@@ -9,7 +9,7 @@ import Stats from './libs/Stats.js';
 window.md = new MobileDetect(window.navigator.userAgent);
 window.shuffled = [];
 window.shuffledIndex = 780;
-window.imgFolder = "https://api.autr.tv/uploads/_/originals/ddd/";
+window.imgFolder = "sites/";
 
 const getUrlVars = () => {
     var vars = {};
