@@ -1,6 +1,6 @@
 import * as THREE from '../three.js-r112/build/three.module.js';
 
-function Grave() {
+function Sites() {
   var _this = this;
   var url, model, w, h, depth, size;
   var log = true;
@@ -113,5 +113,5 @@ function Grave() {
 }
 
 
-export { Grave as default };
+export { Sites as default };
 
