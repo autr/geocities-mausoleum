@@ -2,7 +2,7 @@ import * as THREE from '../three.js-r112/build/three.module.js';
 import { StereoEffect } from '../three.js-r112/examples/jsm/effects/StereoEffect.js';
 import { FirstPersonControls } from '../three.js-r112/examples/jsm/controls/FirstPersonControls.js';
 import { DeviceOrientationControls } from '../three.js-r112/examples/jsm/controls/DeviceOrientationControls.js';
-import Grave from './_grave.js'
+import Sites from './sites.js'
 import Stats from './libs/Stats.js';
 
 
@@ -496,7 +496,7 @@ function init() {
     var x = solution[count].x - (areaSize/2);
     var z = solution[count].y - (areaSize/2);
 
-    var grave = new Grave();
+    var grave = new Sites();
 
 
     grave.init(x, z, scene).then( () => {
