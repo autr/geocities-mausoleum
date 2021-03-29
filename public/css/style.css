@@ -14,6 +14,20 @@
     #controls button span:first-child {
       font-size: 18px; }
 
+a, a:visited, a:active {
+  color: #333;
+  text-decoration: none;
+  font-weight: bolder;
+}
+
+a:hover {
+  background: white;
+}
+
+.dg.ac, .dg.main {
+  display: none;
+}
+
 .info #about {
   display: block;
   height: calc( 100% + 12.5px); }
@@ -33,6 +47,12 @@
   display: none !important; }
   .vr #controls button#ctrlVR {
     display: inline-block !important; }
+#controls {
+  transition: top ease 0.4s;
+}
+.hide #controls {
+  top: 180px;
+}
 
 canvas {
   width: 100%;
@@ -60,7 +80,7 @@ canvas {
     max-width: 420px;
     width: 100%;
     margin: 0 auto;
-    font-size: 12px;
+    font-size: 14px;
     text-align: left; }
     .overlay .inner .scale {
       transform: scale(1.5);

@@ -128,6 +128,10 @@ const onKeyDown = function ( event ) {
 
   }
 
+  if ( event.key == 'v' ) startEvent('vr')
+  if ( event.key == 'i' ) startEvent('info')
+  if ( event.key == 'h' ) startEvent('hide')
+
 };
 
 const onKeyUp = function ( event ) {
@@ -156,11 +160,15 @@ const onKeyUp = function ( event ) {
 
   }
 
+
+  if ( event.key == 'v' ) stopEvent('vr')
+  if ( event.key == 'i' ) stopEvent('info')
+  if ( event.key == 'h' ) stopEvent('hide')
+
 };
 
 
 const startEvent = (k) => {
-  // console.log('do', k);
 
   const btn = $(`button[data-action='${k}']`)[0];
   if (btn) {
@@ -185,6 +193,9 @@ const stopEvent = (k) => {
     btn.classList.remove('active');
   }
 
+  if (k === 'vr') toggleVR()
+  if (k === 'info') toggleInfo()
+  if (k === 'hide') toggleHide()
 
   if (!controlsInited) return;
 
@@ -194,9 +205,11 @@ const stopEvent = (k) => {
   if (k === 'actionBackward') controls.moveBackward = false;
   if (k === 'actionUp') controls.moveUp = false;
   if (k === 'actionDown') controls.moveDown = false;
+
 };
 
 let info = false;
+let hide = false;
 
 window.addEventListener("gamepadconnected", (e) => {
   console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
@@ -209,6 +222,37 @@ window.addEventListener("gamepadconnected", (e) => {
     console.log('axis', a)
   })
 });
+
+const isInside = (e, target) => {
+    const r = target.getBoundingClientRect();
+   if (e.pageX >= r.x && e.pageX <= (r.x + r.width) &&
+    e.pageY >= r.y && e.pageY <= (r.y + r.height) ) {
+    return true;
+  }
+  return false;
+};
+
+
+const toggleInfo = () => {
+    if (!info) $('body').addClass("info");
+    if (info) $('body').removeClass("info");
+    info = !info;
+}
+const toggleHide = () => {
+    if (!hide) $('body').addClass("hide");
+    if (hide) $('body').removeClass("hide");
+    hide = !hide;
+}
+
+const toggleVR = () => {
+
+    if (!VR) $('body').addClass("vr");
+    if (VR) $('body').removeClass("vr");
+    setTimeout( () => {
+      VR = !VR;
+      $(window).trigger('resize');
+    }, (!VR) ? 400 : 0);
+}
 
 
 window.onload = function () { 
@@ -238,39 +282,11 @@ window.onload = function () {
   window.addEventListener( 'keyup', onKeyUp, false );
 
 
-  const isInside = (e, target) => {
-      const r = target.getBoundingClientRect();
-     if (e.pageX >= r.x && e.pageX <= (r.x + r.width) &&
-      e.pageY >= r.y && e.pageY <= (r.y + r.height) ) {
-      return true;
-    }
-    return false;
-  };
-
-
-  const toggleInfo = () => {
-      if (!info) $('body').addClass("info");
-      if (info) $('body').removeClass("info");
-      info = !info;
-  }
-
-  const toggleVR = () => {
-
-      if (!VR) $('body').addClass("vr");
-      if (VR) $('body').removeClass("vr");
-      setTimeout( () => {
-        VR = !VR;
-        $(window).trigger('resize');
-      }, (!VR) ? 400 : 0);
-  }
-
 
   if (params) if (params.mode) if (params.mode.toLowerCase() === 'vr') toggleVR();
 
   $('button').click( (e) => {
 
-    if (e.currentTarget.id === 'ctrlVR') toggleVR();
-    if (e.currentTarget.id === 'ctrlInfo') toggleInfo();
     if (!controlsInited) {
 
       //////// CONTROLS
