@@ -16,4 +16,4 @@ Three.js / VR-enabled net-art piece, 2015 - 2021, created by Gilbert Sinnott. [L
 >
 > In digital life there are perhaps many approximations of death and burial, and also desecration.
 
-Text is adapted from a talk given at Butcher's Tears, Amsterdam, part of Digital Death Drive organised by Dr. Emily West and Stephan Schäfer.
+Text is adapted from a talk given at Butcher's Tears, Amsterdam, part of Digital Death Drive organised by Dr. Emily West and Stephan Schäfer. 
