@@ -218,6 +218,7 @@ THREE.DragControls = function ( _objects, _camera, _domElement ) {
 
 	}
 
+
 	function onDocumentTouchEnd( event ) {
 
 		event.preventDefault();
@@ -234,6 +235,8 @@ THREE.DragControls = function ( _objects, _camera, _domElement ) {
 
 	}
 
+	console.log('????', this)
+
 	activate();
 
 	// API
@@ -244,6 +247,7 @@ THREE.DragControls = function ( _objects, _camera, _domElement ) {
 	this.deactivate = deactivate;
 	this.dispose = dispose;
 
+	this.update = e => e;
 };
 
 THREE.DragControls.prototype = Object.create( THREE.EventDispatcher.prototype );

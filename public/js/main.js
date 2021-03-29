@@ -2,6 +2,8 @@ import * as THREE from '../three.js-r112/build/three.module.js';
 import { StereoEffect } from '../three.js-r112/examples/jsm/effects/StereoEffect.js';
 import { FirstPersonControls } from '../three.js-r112/examples/jsm/controls/FirstPersonControls.js';
 import { DeviceOrientationControls } from '../three.js-r112/examples/jsm/controls/DeviceOrientationControls.js';
+import { DragControls } from '../three.js-r112/examples/jsm/controls/DragControls.js';
+import { OrbitControls } from '../three.js-r112/examples/jsm/controls/OrbitControls.js';
 import Sites from './sites.js'
 import Stats from './libs/Stats.js';
 
@@ -134,6 +136,8 @@ const onKeyDown = function ( event ) {
 
 };
 
+let timestamp = 0
+
 const onKeyUp = function ( event ) {
 
   if (isMobile()) {
@@ -160,7 +164,6 @@ const onKeyUp = function ( event ) {
 
   }
 
-
   if ( event.key == 'v' ) stopEvent('vr')
   if ( event.key == 'i' ) stopEvent('info')
   if ( event.key == 'h' ) stopEvent('hide')
@@ -175,6 +178,15 @@ const startEvent = (k) => {
     btn.classList.add('active');
   }
 
+
+  const t = new Date()
+
+  if ( t - timestamp > 100 ) {
+    if (k === 'vr') toggleVR()
+    if (k === 'info') toggleInfo()
+    if (k === 'hide') toggleHide()
+    timestamp = t
+  }
 
   if (!controlsInited) return;
 
@@ -193,9 +205,8 @@ const stopEvent = (k) => {
     btn.classList.remove('active');
   }
 
-  if (k === 'vr') toggleVR()
-  if (k === 'info') toggleInfo()
-  if (k === 'hide') toggleHide()
+// alert('stopEvent' + k)
+
 
   if (!controlsInited) return;
 
@@ -288,9 +299,6 @@ window.onload = function () {
   $('button').click( (e) => {
 
     if (!controlsInited) {
-
-      //////// CONTROLS
-
 
       if (!isMobile()) {
 
@@ -583,35 +591,6 @@ var material = new THREE.MeshBasicMaterial( {color: 0xffffff, vertexColors: THRE
   var vector = new THREE.Vector3( 10, camera.position.y, 0 );
   camera.lookAt ( vector );
 
-  // godCamera = new THREE.OrthographicCamera(gui.l, gui.r , gui.t , gui.b , -2000, 2000 );
-  // godCamera.position.x = gui.x;
-  // godCamera.position.y = gui.y;
-  // godCamera.position.z = gui.z;
-  // godCamera.lookAt( scene.position );
-  // scene.add(godCamera);
-
-  /////// MOUSE
-
-
-  // projector = new THREE.Raycaster();
-  renderer.domElement.addEventListener( 'mousemove', onDocumentMouseMove, false );
-  renderer.domElement.addEventListener( 'mousedown', onDocumentMouseDown, false );
-  // document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-  // document.addEventListener( 'touchstart', onDocumentMouseDown, false );
-
-  // window.addEventListener('keydown', (e) => {
-
-  //   console.log('keydown', e.key);
-
-  // }, false);
-  // window.addEventListener('keyup', (e) => {
-
-  //   console.log('keyup', e.key);
-
-  // }, false);
-
-  //////// RAYS
-
 
   vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
   vector.unproject(camera );
@@ -699,15 +678,9 @@ function animate() {
 
 }
 
-function onDocumentMouseMove( event ) {
-}
 
 var closeup = false;
 
-function onDocumentMouseDown( event ) {
-
-
-}
 String.prototype.splice = function(idx, rem, str) {
     return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
 };
