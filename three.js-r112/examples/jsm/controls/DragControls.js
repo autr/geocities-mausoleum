@@ -40,6 +40,7 @@ var DragControls = function ( _objects, _camera, _domElement ) {
 		_domElement.addEventListener( 'touchstart', onDocumentTouchStart, false );
 		_domElement.addEventListener( 'touchend', onDocumentTouchEnd, false );
 
+
 	}
 
 	function deactivate() {
@@ -61,7 +62,6 @@ var DragControls = function ( _objects, _camera, _domElement ) {
 	}
 
 	function onDocumentMouseMove( event ) {
-
 		event.preventDefault();
 
 		var rect = _domElement.getBoundingClientRect();
@@ -252,6 +252,7 @@ var DragControls = function ( _objects, _camera, _domElement ) {
 	this.activate = activate;
 	this.deactivate = deactivate;
 	this.dispose = dispose;
+	this.update = e => e;
 
 };
 
